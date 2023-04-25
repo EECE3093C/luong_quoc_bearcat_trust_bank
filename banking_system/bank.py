@@ -6,23 +6,18 @@ class Bank:
     def __init__(self):
         self.accounts = []
 
-   def create_account(self, account_type, account_number, account_holder_name, balance, *args):
-        """Creates a new account with the given account type, account number, account holder name, and initial balance.
-            Args:
-            account_type (str): The account type, either "savings" or "checking".
-            account_number (str): The account number.
-            account_holder_name (str): The name of the account holder.
-            balance (float): The initial balance.
-            *args: Additional arguments for account creation (e.g. interest rate or overdraft limit).
-        """
-        if account_type == "savings":
-            account = SavingsAccount(account_number, account_holder_name, balance, *args)
-        elif account_type == "checking":
-            account = CheckingAccount(account_number, account_holder_name, balance, *args)
+   def create_account(self, account_type, account_number, account_holder_name, balance, interest_rate=0.0, overdraft_limit=0):
+        """Creates a new account with the given parameters and adds it to the accounts list. """
+ 
+        if account_type == "SavingsAccount":
+            new_account = SavingsAccount(account_number, account_holder_name, balance, interest_rate)
+        elif account_type == "CheckingAccount":
+            new_account = CheckingAccount(account_number, account_holder_name, balance, overdraft_limit)
         else:
             print("Invalid account type.")
             return
-        self.accounts.append(account)
+        
+        self.accounts.append(new_account)
 
     def delete_account(self, account_number):
         """Deletes an account with the given account number.
