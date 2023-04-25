@@ -9,6 +9,10 @@ class Account:
     def get_balance(self):
         """Return the current balance of the account."""
         return self.balance
+    
+    def deposit(self, amount):
+        """Add the amount to the current balance of the account."""
+        self.balance += amount
 
     def display(self):
         """Display the account information."""
