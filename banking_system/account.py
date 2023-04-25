@@ -29,8 +29,9 @@ class Account:
 class SavingsAccount(Account):
     """A class representing a savings account."""
 
-    # todo: Add the following method(s):
-    #       __init__
+    def __init__(self, account_number, account_holder_name, balance, interest_rate=0.0):
+        super().__init__(account_number, account_holder_name, balance)
+        self.interest_rate = interest_rate
 
     def calculate_interest(self):
         """Calculate and return the interest on the account balance."""
