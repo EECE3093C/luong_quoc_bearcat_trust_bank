@@ -1,25 +1,30 @@
 class Account:
     """A class representing a bank account."""
 
+    # todo: Add the following methods:
+    #       __init__
+    #       deposit
+    #       withdraw
     def __init__(self, account_number, account_holder_name, balance):
+        # attributes    
         self.account_number = account_number
         self.account_holder_name = account_holder_name
         self.balance = balance
-     
-    def get_balance(self):
-        """Return the current balance of the account."""
-        return self.balance
-    
+
     def deposit(self, amount):
         """Add the amount to the current balance of the account."""
         self.balance += amount
-    
+
     def withdraw(self, amount):
-        """Check if there are sufficient funds in the account before subtracting the amount from the balance."""
-        if self.balance >= amount:
+        """Withdraw the given amount from the account if it doesn't exceed the account's balance."""
+        if amount <= self.balance:
             self.balance -= amount
         else:
-            print("Insufficient funds!!!")
+            print("There are insufficient funds to withdraw.")
+       
+    def get_balance(self):
+        """Return the current balance of the account."""
+        return self.balance
 
     def display(self):
         """Display the account information."""
@@ -29,10 +34,12 @@ class Account:
 class SavingsAccount(Account):
     """A class representing a savings account."""
 
-    def __init__(self, account_number, account_holder_name, balance, interest_rate=0.0):
+    # todo: Add the following method(s):
+    #       __init__
+    def __init__(self, account_number, account_holder_name, balance, interest_rate = 0.0):
         super().__init__(account_number, account_holder_name, balance)
         self.interest_rate = interest_rate
-
+    
     def calculate_interest(self):
         """Calculate and return the interest on the account balance."""
         return self.balance * (self.interest_rate / 100)
@@ -46,10 +53,13 @@ class SavingsAccount(Account):
 class CheckingAccount(Account):
     """A class representing a checking account."""
 
-    def __init__(self, account_number, account_holder_name, balance, overdraft_limit=0):
+    # todo: Add the following methods:
+    #       __init__
+
+    def __init__(self, account_number, account_holder_name, balance, overdraft_limit = 0):
         super().__init__(account_number, account_holder_name, balance)
         self.overdraft_limit = overdraft_limit
-
+        
     def withdraw(self, amount):
         """Withdraw the given amount from the account if it doesn't exceed the overdraft limit."""
         if amount <= self.balance + self.overdraft_limit:
